@@ -65,6 +65,7 @@ jobs:
         uses: azure/login@v2
         with:
           auth-type: IDENTITY
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_36352C563EFE40FBB4DF40AEFB3614A1 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
