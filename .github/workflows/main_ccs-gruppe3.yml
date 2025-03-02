@@ -61,11 +61,22 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
       
-      - name: Login to Azure
-        uses: azure/login@v2
+      - name: Get Azure Credentials from Key Vault
+        id: get-secrets
+        uses: azure/get-keyvault-secrets@v1
         with:
-          auth-type: IDENTITY
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_36352C563EFE40FBB4DF40AEFB3614A1 }}
+          keyvault: ${{ secrets.KEY_VAULT_NAME }}
+          secrets: |
+            client-id
+            tenant-id
+            subscription-id
+
+      - name: Login to Azure using Managed Identity
+        uses: azure/login@v1
+        with:
+          client-id: ${{ steps.get-secrets.outputs.client-id }}
+          tenant-id: ${{ steps.get-secrets.outputs.tenant-id }}
+          subscription-id: ${{ steps.get-secrets.outputs.subscription-id }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
