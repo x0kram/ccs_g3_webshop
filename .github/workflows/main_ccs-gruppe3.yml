@@ -64,7 +64,7 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          managed-identity: true
+          auth-type: IDENTITY
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
