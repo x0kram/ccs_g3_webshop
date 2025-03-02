@@ -60,20 +60,9 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-      
-      - name: Get secrets from Azure Key Vault
-        uses: azure/get-keyvault-secrets@v1
-        with:
-          keyvault: "ccs-keyvault"
-          secrets: "client-id,subscription-id,tenant-id"
-        id: keyvaultsecrets
 
       - name: Login to Azure
         uses: azure/login@v2
-        with:
-          client-id: ${{ steps.keyvaultsecrets.outputs.client-id }}
-          tenant-id: ${{ steps.keyvaultsecrets.outputs.tenant-id }}
-          subscription-id: ${{ steps.keyvaultsecrets.outputs.subscription-id }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
