@@ -172,15 +172,15 @@
 
 
     // Art-Nr. 12340 stornieren
-    document.getElementById("storno-12340").addEventListener("click", () => {
+    /*document.getElementById("storno-12340").addEventListener("click", () => {
         // TODO
-    }
+    }*/
 
     
     // Art-Nr. 56780 stornieren
-    document.getElementById("storno-56780").addEventListener("click", () => {
+    /*document.getElementById("storno-56780").addEventListener("click", () => {
         // TODO
-    }
+    }*/
 
     
     // SMS versenden (Type: "bestellung" und "stornierung")
