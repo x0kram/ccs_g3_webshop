@@ -142,7 +142,7 @@
         
         
         checkStock(); // Lagerstand aktualisieren
-        sendSMS(bestellung, 12340); // SMS Bestellung versenden
+        sendSMS("bestellung", 12340); // SMS Bestellung versenden
     })
 
     
@@ -165,7 +165,7 @@
 
         
         checkStock(); // Lagerstand aktualisieren
-        sendSMS(bestellung, 56780); // SMS für Bestellung versenden
+        sendSMS("bestellung", 56780); // SMS für Bestellung versenden
     })
 
 
