@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webshop | Artikelansicht</title>
+    <title>CCS | Gruppe 3</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -50,20 +50,32 @@
         .buy-button:hover {
             background-color: #0056b3;
         }
+        .storno-button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #b4b4b4;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 150px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <h1>Gruppe 3 - Webshop</h1>
+    <h1>Artikelübersicht:</h1>
     
     <div class="article-container">
         <img src="https://ccsstorageg3.blob.core.windows.net/webshop-images/halskette.jpg" alt="Artikel: Halskette" class="article-image">
         <div class="article-details">
-            <h2>Halskette (silber)</h2>
-            <h3>Artikelnummer: 12340</h3>
-            <p>Beschreibung: Dies ist eine kurze Beschreibung des Artikels.</p>
-            <p id="in-stock-1">Auf Lager:</p>
+            <h2>Halskette (silber)</h2> <!-- Bezeichnung -->
+            <h3>Artikelnummer: 12340</h3> <!-- Artikelnummer -->
+            <p>Beschreibung: Dies ist eine kurze Beschreibung des Artikels.</p> <!-- Beschreibung -->
+            <p id="in-stock-1">Auf Lager:</p> <!-- Auf Lager -->
             <p class="price">Preis: 79,99 €</p>
             <button id="buy-12340" class="buy-button">Kaufen</button>
+            <button id="storno-12340" class="storno-button">Stornieren</button>
         </div>
     </div>
 
@@ -71,12 +83,13 @@
     <div class="article-container">
         <img src="https://ccsstorageg3.blob.core.windows.net/webshop-images/armband.jpg" alt="Artikel: Armband" class="article-image">
         <div class="article-details">
-            <h2>Armband (silber)</h2>
-            <h3>Artikelnummer: 56780</h3>
-            <p>Beschreibung: Hier steht eine andere Beschreibung des zweiten Artikels.</p>
-            <p id="in-stock-2">Auf Lager:</p>
+            <h2>Armband (silber)</h2> <!-- Bezeichnung -->
+            <h3>Artikelnummer: 56780</h3> <!-- Artikelnummer-->
+            <p>Beschreibung: Hier steht eine andere Beschreibung des zweiten Artikels.</p> <!-- Beschreibung -->
+            <p id="in-stock-2">Auf Lager:</p> <!-- Auf Lager -->
             <p class="price">Preis: 49,99 €</p>
             <button id="buy-56780" class="buy-button">Kaufen</button>
+            <button id="storno-56780" class="storno-button">Stornieren</button>
         </div>
     </div>
 </body>
@@ -84,15 +97,16 @@
 
 
 <script>
+    // Funktionen beim Laden der Website aufrufen:
     window.onload = function() {
-        checkStock();
+        checkStock(); // Lagerstand aus AWS fetchen und ausgeben
     }
 
     // Lagerstandabfrage
     function checkStock() {
         console.log("checkStock()");
 
-        fetch("XXX", {
+        fetch("172.20.116.198", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -128,8 +142,9 @@
             }
         })
         
-        // Lagerstand aktualisieren
-        checkStock();
+        
+        checkStock(); // Lagerstand aktualisieren
+        sendSMS(bestellung, 12340); // SMS Bestellung versenden
     })
 
     
@@ -150,8 +165,42 @@
             }
         })
 
-        // Lagerstand aktualisieren
-        checkStock();
+        
+        checkStock(); // Lagerstand aktualisieren
+        sendSMS(bestellung, 56780); // SMS für Bestellung versenden
     })
 
+
+    // Art-Nr. 12340 stornieren
+    document.getElementById("storno-12340").addEventListener("click", () => {
+        // TODO
+    }
+
+    
+    // Art-Nr. 56780 stornieren
+    document.getElementById("storno-56780").addEventListener("click", () => {
+        // TODO
+    }
+
+    
+    // SMS versenden (Type: "bestellung" und "stornierung")
+    function sendSMS(type, artikelnummer) {
+        const url = "https://prod-123.westeurope.logic.azure.com:443/workflows/b233566567554a4a96e358957447a84e/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=Hat6mIjdqhdTZZHXuPJ7PJZ2bt_cuVHVNukGT68yKOQ";
+
+        const requestData = {
+            typ: type,
+            artikelnummer: artikelnummer
+        }
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => response.json())
+        .then(data => console.log("Response:", data))
+        .catch(error => console.error("Error:", error));
+    }
 </script>
