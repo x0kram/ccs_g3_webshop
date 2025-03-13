@@ -106,11 +106,11 @@
     function checkStock() {
         console.log("checkStock()");
 
-        fetch("172.20.116.198", {
+        fetch("172.20.116.198:80", {
             method: "GET",
-            headers: {
+            /*headers: {
                 "Content-Type": "application/json"
-            }
+            }*/
         })
         .then(response => {
             if(!response.ok) {
