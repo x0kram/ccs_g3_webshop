@@ -99,18 +99,15 @@
 <script>
     // Funktionen beim Laden der Website aufrufen:
     window.onload = function() {
-        checkStock(); // Lagerstand aus AWS fetchen und ausgeben
+        checkStock(); // Lagerstand aus AWS fetchen
     }
 
     // Lagerstandabfrage
     function checkStock() {
-        console.log("checkStock()");
+        /*console.log("checkStock()");
 
         fetch("172.20.116.198:80", {
-            method: "GET",
-            /*headers: {
-                "Content-Type": "application/json"
-            }*/
+            method: "GET"
         })
         .then(response => {
             if(!response.ok) {
@@ -120,17 +117,18 @@
         })
         .then(data => {
             console.log(data)
-            // TODO: Lagerstand in Artikelansicht ergänzen
+            
+            // TODO: Lagerstand aus Response anzeigen lassen
         })
-    }
+    }*/
 
 
-    // Halskette (ArtNr. 12340) kaufen
+    // Halskette (Art-Nr. 12340) kaufen
     document.getElementById("buy-12340").addEventListener("click", () => {
         console.log("buy-12340");
 
         // Bestellung verbuchen
-        fetch("XXX", {
+        /*fetch("XXX", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -140,7 +138,7 @@
             if(!response.ok) {
                 console.log("Bestellung (ArtNr. 12340) konnte nicht verbucht werden.")
             }
-        })
+        })*/
         
         
         checkStock(); // Lagerstand aktualisieren
@@ -148,12 +146,12 @@
     })
 
     
-    // Armband (ArtNr. 56780) kaufen
+    // Armband (Art-Nr. 56780) kaufen
     document.getElementById("buy-56780").addEventListener("click", () => {
         console.log("buy-56780");
 
         // Bestellung verbuchen
-        fetch("XXX", {
+        /*fetch("XXX", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -163,7 +161,7 @@
             if(!response.ok) {
                 console.log("Bestellung (ArtNr. 56780) konnte nicht verbucht werden.")
             }
-        })
+        })*/
 
         
         checkStock(); // Lagerstand aktualisieren
@@ -190,7 +188,7 @@
         const requestData = {
             typ: type,
             artikelnummer: artikelnummer
-        }
+        };
 
         fetch(url, {
             method: "POST",
