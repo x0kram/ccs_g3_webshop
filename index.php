@@ -104,9 +104,9 @@
 
     // Lagerstandabfrage
     function checkStock() {
-        /*console.log("checkStock()");
+        console.log("checkStock()");
 
-        fetch("172.20.116.198:80", {
+        fetch(XXX, {
             method: "GET"
         })
         .then(response => {
@@ -119,7 +119,7 @@
             console.log(data)
             
             // TODO: Lagerstand aus Response anzeigen lassen
-        })*/
+        })
     }
 
 
@@ -142,7 +142,7 @@
         
         
         checkStock(); // Lagerstand aktualisieren
-        sendSMS("bestellung", 12340); // SMS Bestellung versenden
+        //sendSMS("bestellung", 12340); // SMS Bestellung versenden
     })
 
     
@@ -165,7 +165,7 @@
 
         
         checkStock(); // Lagerstand aktualisieren
-        sendSMS("bestellung", 56780); // SMS für Bestellung versenden
+        //sendSMS("bestellung", 56780); // SMS für Bestellung versenden
     })
 
 
@@ -197,7 +197,9 @@
             },
             body: JSON.stringify(requestData)
         })
-        .then(response => response.json())
+        .then(response => {
+            return response.json()
+        })
         .then(data => console.log("Response:", data))
         .catch(error => console.error("Error:", error));
     }
