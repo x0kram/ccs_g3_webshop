@@ -119,8 +119,8 @@
             console.log(data)
             
             // TODO: Lagerstand aus Response anzeigen lassen
-        })
-    }*/
+        })*/
+    }
 
 
     // Halskette (Art-Nr. 12340) kaufen
