@@ -249,12 +249,8 @@
             body: JSON.stringify(requestData)
         })
         .then(response => {
-            return response.json()
-        })
-        .then(response => {
-            if (!response.ok) {
-                // throw new Error(`HTTP-Fehler! Status: ${response.status}`);
-                console.log(response);
+            if(!response.ok) {
+                console.log("Error");
             }
             return response.json();
         })
