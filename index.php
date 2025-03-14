@@ -1,19 +1,40 @@
 <?php
-    $ch = curl_init();
-    $url = "internal-ac37088aa81164d04bfa43bf88738643-1282929329.eu-west-1.elb.amazonaws.com/inventory";
-    
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
+    if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action'])) {
+        $ch = curl_init();
+        $url = "internal-ac37088aa81164d04bfa43bf88738643-1282929329.eu-west-1.elb.amazonaws.com/inventory";
+        
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        $response = curl_exec($ch);
 
-    if(curl_errno($ch)) {
-        echo "<script>console.log('Error: " . curl_error($ch) . "' );</script>";
-    }
-    else {
-        echo "<script>console.log('Works: " . $response . "' );</script>";
+        if(curl_errno($ch)) {
+            echo "<script>console.log('Error: " . curl_error($ch) . "' );</script>";
+        }
+        else {
+            echo "<script>console.log('Works: " . $response . "' );</script>";
+        }
+
+        curl_close($ch);
     }
 
-    curl_close($ch);
+    // function testAPI() {
+    //     $ch = curl_init();
+    //     $url = "internal-ac37088aa81164d04bfa43bf88738643-1282929329.eu-west-1.elb.amazonaws.com/inventory";
+        
+    //     curl_setopt($ch, CURLOPT_URL, $url);
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    //     $response = curl_exec($ch);
+
+    //     if(curl_errno($ch)) {
+    //         echo "<script>console.log('Error: " . curl_error($ch) . "' );</script>";
+    //     }
+    //     else {
+    //         echo "<script>console.log('Works: " . $response . "' );</script>";
+    //     }
+
+    //     curl_close($ch);
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -80,9 +101,11 @@
             text-align: center;
         }
     </style>
+    <script src="jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <h1>Artikelübersicht:</h1>
+    <button id="api" onclick="send2API()">Test API</button>
     
     <div class="article-container">
         <img src="https://ccsstorageg3.blob.core.windows.net/webshop-images/halskette.jpg" alt="Artikel: Halskette" class="article-image">
@@ -115,9 +138,27 @@
 
 
 <script>
+    function send2API() {
+        $.ajax({
+            url: "", // PHP-Datei, hier dieselbe Datei
+            type: "GET", // GET-Methode verwenden
+            success: function(response) {
+                console.log(JSON.stringify(response)); // Antwort anzeigen
+            },
+            error: function(xhr, status, error) {
+                console.log(error); // Error anzeigen
+            }
+        })
+    }
+
+
+
+
+
+
     // Funktionen beim Laden der Website aufrufen:
     window.onload = function() {
-        checkStock(); // Lagerstand aus AWS fetchen
+        // checkStock(); // Lagerstand aus AWS fetchen
     }
 
     // Lagerstandabfrage
