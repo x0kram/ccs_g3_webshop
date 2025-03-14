@@ -1,5 +1,5 @@
 <?php
-    if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action'])) {
+    if(isset($_GET['api'])) {
         $ch = curl_init();
         $url = "internal-ac37088aa81164d04bfa43bf88738643-1282929329.eu-west-1.elb.amazonaws.com/inventory";
         
@@ -17,24 +17,6 @@
 
         curl_close($ch);
     }
-
-    // function testAPI() {
-    //     $ch = curl_init();
-    //     $url = "internal-ac37088aa81164d04bfa43bf88738643-1282929329.eu-west-1.elb.amazonaws.com/inventory";
-        
-    //     curl_setopt($ch, CURLOPT_URL, $url);
-    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    //     $response = curl_exec($ch);
-
-    //     if(curl_errno($ch)) {
-    //         echo "<script>console.log('Error: " . curl_error($ch) . "' );</script>";
-    //     }
-    //     else {
-    //         echo "<script>console.log('Works: " . $response . "' );</script>";
-    //     }
-
-    //     curl_close($ch);
-    // }
 ?>
 
 <!DOCTYPE html>
@@ -105,7 +87,9 @@
 </head>
 <body>
     <h1>Artikelübersicht:</h1>
-    <button id="api" onclick="send2API()">Test API</button>
+    <form action="" method="GET">
+        <button type="submit" name="api">Test API</button>
+    </form>
     
     <div class="article-container">
         <img src="https://ccsstorageg3.blob.core.windows.net/webshop-images/halskette.jpg" alt="Artikel: Halskette" class="article-image">
