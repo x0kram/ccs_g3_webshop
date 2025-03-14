@@ -6,7 +6,7 @@
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-        $response = curl_exec($ch);
+        // $response = curl_exec($ch);
 
         // if(curl_errno($ch)) {
         //     echo "<script>console.log('Error: " . curl_error($ch) . "' );</script>";
@@ -26,6 +26,8 @@
             "status" => $httpCode === 200 ? "success" : "error",
             "response" => json_decode($response, true)
         ]);
+
+        echo $response;
     }
 ?>
 
