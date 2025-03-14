@@ -106,13 +106,12 @@
     function checkStock() {
         console.log("checkStock()");
 
-        fetch("internal-ac37088aa81164d04bfa43bf88738643-1282929329.eu-west-1.elb.amazonaws.com", {
+        fetch("internal-ac37088aa81164d04bfa43bf88738643-1282929329.eu-west-1.elb.amazonaws.com/inventory", {
             method: "GET"
         })
         .then(response => {
             if(!response.ok) {
-                //console.log("Lagerstand konnte nicht abgefragt werden.")
-                console.log(response);
+                console.log("Lagerstand konnte nicht abgefragt werden.")
             }
             return response.json();
         })
