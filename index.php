@@ -251,7 +251,12 @@
         .then(response => {
             return response.json()
         })
-        .then(data => console.log("Response:", data))
-        .catch(error => console.error("Error:", error));
+        .then(response => {
+            if (!response.ok) {
+                // throw new Error(`HTTP-Fehler! Status: ${response.status}`);
+                console.log(response);
+            }
+            return response.json();
+        }
     }
 </script>
