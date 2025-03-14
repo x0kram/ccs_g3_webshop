@@ -1,3 +1,21 @@
+<?php
+    $ch = curl_init();
+    $url = "v2-lagerstand-db.ckguk9eajgno.eu-west-1.rds.amazonaws.com";
+    
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($ch);
+
+    if(curl_errno($ch)) {
+        echo "<script>console.log('Error');</script>";
+    }
+    else {
+        echo "<script>console.log('Hat funktioniert: ');</script>" . $response;
+    }
+
+    curl_close($ch);    
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
