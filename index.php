@@ -1,3 +1,21 @@
+<?php
+    $ch = curl_init();
+    $url = "internal-ac37088aa81164d04bfa43bf88738643-1282929329.eu-west-1.elb.amazonaws.com/inventory";
+    
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($ch);
+
+    if(curl_errno($ch)) {
+        echo "<script>console.log('Error: " . curl_error($ch) . "' );</script>";
+    }
+    else {
+        echo "<script>console.log('Works: " . $response . "' );</script>";
+    }
+
+    curl_close($ch);
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -106,7 +124,7 @@
     function checkStock() {
         console.log("checkStock()");
 
-        fetch("internal-ac37088aa81164d04bfa43bf88738643-1282929329.eu-west-1.elb.amazonaws.com/inventory", {
+        fetch("http://internal-v2-lagerstand-lb-197126788.eu-west-1.elb.amazonaws.com/inventory", {
             method: "GET"
         })
         .then(response => {
