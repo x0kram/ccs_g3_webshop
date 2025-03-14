@@ -124,30 +124,20 @@
     function checkStock() {
         console.log("checkStock()");
 
-        // fetch("http://internal-ac37088aa81164d04bfa43bf88738643-1282929329.eu-west-1.elb.amazonaws.com/inventory", {
-        //     method: "GET"
-        // })
-        // .then(response => {
-        //     if(!response.ok) {
-        //         console.log("Lagerstand konnte nicht abgefragt werden.")
-        //     }
-        //     return response.json();
-        // })
-        // .then(data => {
-        //     console.log(data)
+        fetch("internal-v2-lagerstand-lb-197126788.eu-west-1.elb.amazonaws.com/inventory", {
+            method: "GET"
+        })
+        .then(response => {
+            if(!response.ok) {
+                console.log("Lagerstand konnte nicht abgefragt werden.")
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
             
-        //     // TODO: Lagerstand aus Response anzeigen lassen
-        // })
-
-
-        const httpGet = (url, callback, err = console.error) => {
-            const request = new XMLHttpRequest();
-            request.open('GET', url, true);
-            request.onload = () => callback(request.responseText);
-            request.onerror = () => err(request);
-            request.send();
-        };
-        httpGet('http://internal-ac37088aa81164d04bfa43bf88738643-1282929329.eu-west-1.elb.amazonaws.com/inventory', console.log);
+            // TODO: Lagerstand aus Response anzeigen lassen
+        })
     }
 
 
