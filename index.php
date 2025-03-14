@@ -101,7 +101,7 @@
             text-align: center;
         }
     </style>
-    <script src="jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
     <h1>Artikelübersicht:</h1>
