@@ -8,14 +8,24 @@
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         $response = curl_exec($ch);
 
-        if(curl_errno($ch)) {
-            echo "<script>console.log('Error: " . curl_error($ch) . "' );</script>";
-        }
-        else {
-            echo "<script>console.log('Works: " . $response . "' );</script>";
-        }
+        // if(curl_errno($ch)) {
+        //     echo "<script>console.log('Error: " . curl_error($ch) . "' );</script>";
+        // }
+        // else {
+        //     echo "<script>console.log('Works: " . $response . "' );</script>";
+        // }
 
+        // curl_close($ch);
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
+    
+        // Antwort zurückgeben
+        echo json_encode([
+            "status" => $httpCode === 200 ? "success" : "error",
+            "response" => json_decode($response, true)
+        ]);
     }
 ?>
 
