@@ -148,10 +148,6 @@
     }
 
 
-
-
-
-
     // Funktionen beim Laden der Website aufrufen:
     window.onload = function() {
         // checkStock(); // Lagerstand aus AWS fetchen
@@ -197,7 +193,7 @@
         
         
         // checkStock(); // Lagerstand aktualisieren
-        //sendSMS("bestellung", 12340); // SMS Bestellung versenden
+        sendSMS("bestellung", 12340); // Bestellung-SMS versenden
     })
 
     
@@ -220,20 +216,20 @@
 
         
         // checkStock(); // Lagerstand aktualisieren
-        //sendSMS("bestellung", 56780); // SMS für Bestellung versenden
+        sendSMS("bestellung", 56780); // Bestellung-SMS versenden
     })
 
 
     // Art-Nr. 12340 stornieren
-    /*document.getElementById("storno-12340").addEventListener("click", () => {
-        // TODO
-    }*/
+    document.getElementById("storno-12340").addEventListener("click", () => {
+        sendSMS("stornierung", 12340); // Storno-SMS versenden
+    }
 
     
     // Art-Nr. 56780 stornieren
-    /*document.getElementById("storno-56780").addEventListener("click", () => {
-        // TODO
-    }*/
+    document.getElementById("storno-56780").addEventListener("click", () => {
+        sendSMS("stornierung", 56780); // Storno-SMS versenden
+    }
 
     
     // SMS versenden (Type: "bestellung" und "stornierung")
