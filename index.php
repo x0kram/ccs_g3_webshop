@@ -111,7 +111,8 @@
         })
         .then(response => {
             if(!response.ok) {
-                console.log("Lagerstand konnte nicht abgefragt werden.")
+                //console.log("Lagerstand konnte nicht abgefragt werden.")
+                console.log(response);
             }
             return response.json();
         })
