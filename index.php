@@ -1,21 +1,3 @@
-<?php
-    $ch = curl_init();
-    $url = "v2-lagerstand-db.ckguk9eajgno.eu-west-1.rds.amazonaws.com";
-    
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
-
-    if(curl_errno($ch)) {
-        echo "<script>console.log('Error');</script>";
-    }
-    else {
-        echo "<script>console.log('Hat funktioniert: ');</script>" . $response;
-    }
-
-    curl_close($ch);    
-?>
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -124,7 +106,7 @@
     function checkStock() {
         console.log("checkStock()");
 
-        fetch(XXX, {
+        fetch("internal-ac37088aa81164d04bfa43bf88738643-1282929329.eu-west-1.elb.amazonaws.com", {
             method: "GET"
         })
         .then(response => {
@@ -159,7 +141,7 @@
         })*/
         
         
-        checkStock(); // Lagerstand aktualisieren
+        // checkStock(); // Lagerstand aktualisieren
         //sendSMS("bestellung", 12340); // SMS Bestellung versenden
     })
 
@@ -182,7 +164,7 @@
         })*/
 
         
-        checkStock(); // Lagerstand aktualisieren
+        // checkStock(); // Lagerstand aktualisieren
         //sendSMS("bestellung", 56780); // SMS für Bestellung versenden
     })
 
