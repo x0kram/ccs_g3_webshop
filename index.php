@@ -19,6 +19,7 @@
 
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        echo "<script>console.log('Works: " . $response . "' );</script>";
         curl_close($ch);
     
         // Antwort zurückgeben
